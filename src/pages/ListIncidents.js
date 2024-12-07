@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './ListIncidents.css';
 
 const ListIncidents = ({ onSubmit }) => {
@@ -27,6 +27,10 @@ const ListIncidents = ({ onSubmit }) => {
     });
 
   };
+
+  useEffect(() => {
+    fetchIncidents();
+  }, [page, limit, status, severity]);
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -80,6 +84,7 @@ const ListIncidents = ({ onSubmit }) => {
       <table>
         <thead>
           <tr>
+            <th>Accident ID</th>
             <th>Title</th>
             <th>Description</th>
             <th>Status</th>
@@ -90,6 +95,7 @@ const ListIncidents = ({ onSubmit }) => {
           {incidents.length > 0 ? (
             incidents.map((incident) => (
               <tr key={incident.accidentId}>
+                <td>{incident.accidentId}</td>
                 <td><strong>{incident.title}</strong></td>
                 <td>{incident.description}</td>
                 <td>{incident.status}</td>
@@ -105,14 +111,14 @@ const ListIncidents = ({ onSubmit }) => {
       </table>
 
 
-      {/* <div>
+      <div>
         <button onClick={() => handlePaginationChange(page - 1)} disabled={page === 1}>
           Previous
         </button>
         <button onClick={() => handlePaginationChange(page + 1)} disabled={incidents.length === 0}>
           Next
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };

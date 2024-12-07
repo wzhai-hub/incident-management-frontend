@@ -11,6 +11,7 @@
 ## Run project command
 | Command Type    | Command                      |
 |-----------------|------------------------------|
+| install         | yarn install                 |
 | Build           | yarn compile                 |
 | Package         | yarn build                   |
 | Run Command     | yarn start                   |
